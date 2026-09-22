@@ -1,0 +1,47 @@
+.app {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.listing-layout {
+  display: grid;
+  grid-template-columns: 1fr 380px;
+  gap: 80px;
+  padding-top: 8px;
+}
+
+.listing-side {
+  position: relative;
+  min-width: 0;
+}
+
+.listing-main {
+  min-width: 0;
+}
+
+.listing-followup {
+  min-width: 0;
+}
+
+.listing-side > * {
+  position: sticky;
+  top: 136px;
+}
+
+@media (max-width: 900px) {
+  .listing-layout {
+    grid-template-columns: 1fr;
+    gap: 0;
+  }
+
+  .listing-side {
+    order: -1;
+  }
+
+  .listing-side > * {
+    position: static;
+    max-width: 100%;
+    margin-top: 24px;
+  }
+}
