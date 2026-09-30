@@ -67,7 +67,7 @@ export default function App() {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  function openPhotoTour(heroIndex = 0) {
+  function openPhotoTour(heroIndex = null) {
     const heroToCategoryMap = [
       'living-room-1',
       'living-room-2',
@@ -75,7 +75,8 @@ export default function App() {
       'bedroom',
       'exterior',
     ];
-    setPhotoTourCategoryId(heroToCategoryMap[heroIndex] || 'living-room-1');
+    // "Show all photos" (no hero index) opens at the top; a hero tile jumps to its category.
+    setPhotoTourCategoryId(heroIndex === null ? null : heroToCategoryMap[heroIndex] || null);
     setPhotoTourOpen(true);
   }
 

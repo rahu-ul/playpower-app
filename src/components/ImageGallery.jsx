@@ -1,4 +1,4 @@
-import { Grid3x3 } from 'lucide-react';
+import GridDotsIcon from './GridDotsIcon';
 import { heroImages } from '../data/listing';
 import './ImageGallery.css';
 
@@ -28,10 +28,10 @@ export default function ImageGallery({ onOpenPhotoTour }) {
         <button
           type="button"
           className="gallery-show-all"
-          onClick={() => onOpenPhotoTour(0)}
+          onClick={() => onOpenPhotoTour(null)}
           aria-label="Show all photos"
         >
-          <Grid3x3 size={16} />
+          <GridDotsIcon size={14} />
           Show all photos
         </button>
       </div>

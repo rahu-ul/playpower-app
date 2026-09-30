@@ -1,5 +1,5 @@
 import { useEffect, useRef } from 'react';
-import { ChevronLeft, Share, Heart, Grid3x3 } from 'lucide-react';
+import { ChevronLeft, Share, Heart } from 'lucide-react';
 import { photoTourCategories } from '../data/listing';
 import { useFocusTrap } from '../hooks/useFocusTrap';
 import './PhotoTour.css';
@@ -17,7 +17,7 @@ export default function PhotoTour({ onClose, onOpenLightbox, initialCategoryId }
     if (initialCategoryId && bodyRef.current) {
       const targetEl = document.getElementById(`pt-${initialCategoryId}`);
       if (targetEl) {
-        targetEl.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        targetEl.scrollIntoView({ behavior: 'auto', block: 'start' });
       }
     }
   }, [initialCategoryId]);
@@ -45,7 +45,7 @@ export default function PhotoTour({ onClose, onOpenLightbox, initialCategoryId }
           ref={closeBtnRef}
           aria-label="Back to listing"
         >
-          <ChevronLeft size={20} />
+          <ChevronLeft size={18} />
         </button>
         <span className="photo-tour-title">Photo tour</span>
         <div className="photo-tour-actions">
@@ -58,24 +58,23 @@ export default function PhotoTour({ onClose, onOpenLightbox, initialCategoryId }
         </div>
       </div>
 
-      <nav className="photo-tour-thumbstrip" aria-label="Photo categories">
-        {photoTourCategories.map((cat) => (
-          <button
-            key={cat.id}
-            type="button"
-            className="photo-tour-thumb"
-            onClick={() => scrollToCategory(cat.id)}
-            aria-label={`Scroll to ${cat.label}`}
-          >
-            <div className="photo-tour-thumb-img">
-              <img src={cat.images[0]} alt="" />
-            </div>
-            <span>{cat.label}</span>
-          </button>
-        ))}
-      </nav>
-
       <div className="photo-tour-body" ref={bodyRef}>
+        <nav className="photo-tour-thumbstrip" aria-label="Photo categories">
+          {photoTourCategories.map((cat) => (
+            <button
+              key={cat.id}
+              type="button"
+              className="photo-tour-thumb"
+              onClick={() => scrollToCategory(cat.id)}
+              aria-label={`Scroll to ${cat.label}`}
+            >
+              <div className="photo-tour-thumb-img">
+                <img src={cat.images[0]} alt="" />
+              </div>
+              <span>{cat.label}</span>
+            </button>
+          ))}
+        </nav>
         {photoTourCategories.map((cat) => (
           <section key={cat.id} id={`pt-${cat.id}`} className="photo-tour-category">
             <div className="photo-tour-category-text">
@@ -102,14 +101,6 @@ export default function PhotoTour({ onClose, onOpenLightbox, initialCategoryId }
         ))}
       </div>
 
-      <button
-        type="button"
-        className="photo-tour-fab"
-        onClick={() => onOpenLightbox(photoTourCategories[0].id, 0)}
-        aria-label="View all photos in grid"
-      >
-        <Grid3x3 size={16} />
-      </button>
     </div>
   );
 }

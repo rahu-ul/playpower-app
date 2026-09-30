@@ -1,5 +1,6 @@
 import { useEffect, useRef } from 'react';
-import { ChevronLeft, ChevronRight, X, Grid3x3 } from 'lucide-react';
+import { ChevronLeft, ChevronRight, X } from 'lucide-react';
+import GridDotsIcon from './GridDotsIcon';
 import { allPhotos } from '../data/listing';
 import { useFocusTrap } from '../hooks/useFocusTrap';
 import './Lightbox.css';
@@ -47,12 +48,12 @@ export default function Lightbox({ index, onClose, onNavigate }) {
           onClick={onClose}
           aria-label="Return to photo tour overview"
         >
-          <Grid3x3 size={16} />
+          <GridDotsIcon size={16} />
         </button>
         <span className="lightbox-title">{photo.category}</span>
         <div className="lightbox-actions">
           <span className="lightbox-counter">
-            {index + 1} / {allPhotos.length}
+            {index + 1} of {allPhotos.length}
           </span>
           <button
             type="button"
@@ -74,7 +75,7 @@ export default function Lightbox({ index, onClose, onNavigate }) {
           disabled={index === 0}
           aria-label="Previous photo"
         >
-          <ChevronLeft size={20} />
+          <ChevronLeft size={16} />
         </button>
 
         <img src={photo.src} alt={photo.alt} className="lightbox-image" />
@@ -86,7 +87,7 @@ export default function Lightbox({ index, onClose, onNavigate }) {
           disabled={index === allPhotos.length - 1}
           aria-label="Next photo"
         >
-          <ChevronRight size={20} />
+          <ChevronRight size={16} />
         </button>
       </div>
     </div>

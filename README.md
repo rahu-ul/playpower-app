@@ -102,3 +102,11 @@ etc.) is centralized in `src/data/listing.js` for easy editing.
   build environment could not launch a headless browser to capture
   screenshots for comparison, so visual QA here was via code review and a
   clean production build rather than pixel-diffing.
+
+
+## Submission extras
+
+- `architecture/` — production-scale architecture diagram (SVG, PNG, PDF)
+- `ai-workflow/` — prompt log, sub-agent and skill configs
+- `scripts/capture.py` — Playwright screenshot helper
+- `CHANGES.md` — latest fidelity/accessibility corrections
