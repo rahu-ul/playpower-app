@@ -1,0 +1,134 @@
+.header {
+  position: sticky;
+  top: 0;
+  z-index: 40;
+  background: #fff;
+  border-bottom: 1px solid var(--color-border-light);
+}
+
+.header-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 14px 80px;
+  gap: 16px;
+}
+
+.header-logo {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  text-decoration: none;
+  color: var(--color-primary);
+  font-size: 22px;
+  font-weight: 700;
+  flex-shrink: 0;
+}
+
+.header-search {
+  display: flex;
+  align-items: center;
+  border: 1px solid var(--color-border);
+  border-radius: 999px;
+  box-shadow: var(--shadow-sm);
+  padding: 6px 6px 6px 20px;
+  gap: 4px;
+}
+
+.header-search-segment {
+  background: none;
+  border: none;
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--color-text);
+  padding: 6px 14px;
+  border-radius: 999px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.header-search-icon {
+  font-size: 14px;
+}
+
+.header-search-segment--muted {
+  color: var(--color-text-secondary);
+  font-weight: 400;
+}
+
+.header-search-divider {
+  width: 1px;
+  height: 22px;
+  background: var(--color-border);
+}
+
+.header-search-btn {
+  background: var(--color-primary);
+  border: none;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.header-right {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-shrink: 0;
+}
+
+.header-host-link {
+  background: none;
+  border: none;
+  font-size: 14px;
+  font-weight: 600;
+  padding: 12px;
+  border-radius: 999px;
+  white-space: nowrap;
+}
+
+.header-host-link:hover,
+.header-icon-btn:hover,
+.header-menu-btn:hover {
+  background: var(--color-bg-subtle);
+}
+
+.header-icon-btn {
+  background: none;
+  border: none;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.header-menu-btn {
+  background: none;
+  border: 1px solid var(--color-border);
+  border-radius: 999px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 6px 6px 12px;
+  box-shadow: var(--shadow-sm);
+}
+
+@media (max-width: 900px) {
+  .header-inner {
+    padding: 12px 24px;
+  }
+  .header-search-segment,
+  .header-host-link {
+    display: none;
+  }
+  .header-search {
+    padding: 6px;
+  }
+}

@@ -1,0 +1,56 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1400 900" font-family="Helvetica, Arial, sans-serif">
+<defs>
+<marker id="a" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0L10 5L0 10z" fill="#444"/></marker>
+<style>.b{fill:#fff;stroke:#444;stroke-width:1.5;rx:8}.t{font-size:14px;fill:#222;text-anchor:middle}.h{font-size:12px;fill:#666;text-anchor:middle}.g{font-size:15px;font-weight:700;fill:#222}.l{stroke:#444;stroke-width:1.5;fill:none;marker-end:url(#a)}.d{stroke-dasharray:5 4}</style>
+</defs>
+<rect width="1400" height="900" fill="#fafafa"/>
+<text x="700" y="36" text-anchor="middle" font-size="22" font-weight="700" fill="#222">Production-scale vacation-rental marketplace — high-level architecture</text>
+
+<rect x="30" y="60" width="1340" height="90" fill="#eaf3ff" stroke="#9bbcf0" rx="10"/><text x="45" y="82" class="g">1 · Edge &amp; Frontend</text>
+<rect class="b" x="60" y="95" width="200" height="45"/><text class="t" x="160" y="115">Users (web / mobile)</text><text class="h" x="160" y="131">desktop-first SPA</text>
+<rect class="b" x="330" y="95" width="230" height="45"/><text class="t" x="445" y="115">DNS + CDN / Edge cache</text><text class="h" x="445" y="131">images (AVIF/WebP), static assets, WAF</text>
+<rect class="b" x="630" y="95" width="260" height="45"/><text class="t" x="760" y="115">Frontend (React, SSR/ISR at edge)</text><text class="h" x="760" y="131">code-split routes, lazy gallery/lightbox</text>
+<rect class="b" x="960" y="95" width="230" height="45"/><text class="t" x="1075" y="115">Image service</text><text class="h" x="1075" y="131">on-the-fly resize, responsive srcset</text>
+<path class="l" d="M260 117H330"/><path class="l" d="M560 117H630"/><path class="l" d="M890 117H960"/>
+
+<rect x="30" y="175" width="1340" height="80" fill="#fff4e5" stroke="#f0c48a" rx="10"/><text x="45" y="197" class="g">2 · Traffic management</text>
+<rect class="b" x="330" y="208" width="330" height="38"/><text class="t" x="495" y="232">API Gateway / Load Balancer (rate limit, authN)</text>
+<rect class="b" x="740" y="208" width="330" height="38"/><text class="t" x="905" y="232">Autoscaled stateless services (containers)</text>
+<path class="l" d="M760 140V175H495V208"/><path class="l" d="M660 227H740"/>
+
+<rect x="30" y="280" width="1340" height="150" fill="#eefaf0" stroke="#9fd6a8" rx="10"/><text x="45" y="302" class="g">3 · Backend services (domain-oriented, independently scalable)</text>
+<rect class="b" x="60" y="320" width="180" height="50"/><text class="t" x="150" y="342">Auth / Users</text><text class="h" x="150" y="359">OIDC, sessions</text>
+<rect class="b" x="260" y="320" width="180" height="50"/><text class="t" x="350" y="342">Listings</text><text class="h" x="350" y="359">content, media, availability</text>
+<rect class="b" x="460" y="320" width="180" height="50"/><text class="t" x="550" y="342">Booking</text><text class="h" x="550" y="359">calendar locks, idempotent</text>
+<rect class="b" x="660" y="320" width="180" height="50"/><text class="t" x="750" y="342">Payments</text><text class="h" x="750" y="359">PSP, ledger, payouts</text>
+<rect class="b" x="860" y="320" width="180" height="50"/><text class="t" x="950" y="342">Reviews</text><text class="h" x="950" y="359">moderation, aggregates</text>
+<rect class="b" x="1060" y="320" width="180" height="50"/><text class="t" x="1150" y="342">Search</text><text class="h" x="1150" y="359">geo + filters + ranking</text>
+<rect class="b" x="1260" y="320" width="90" height="50"/><text class="t" x="1305" y="342">Notify</text><text class="h" x="1305" y="359">email/push</text>
+<rect class="b" x="260" y="384" width="780" height="34"/><text class="t" x="650" y="406">Async event bus (Kafka / SQS): booking.created · listing.updated · review.posted</text>
+<path class="l" d="M905 246V270H650V280"/><path class="l d" d="M550 370V384"/><path class="l d" d="M750 370V384"/><path class="l d" d="M350 370V384"/>
+
+<rect x="30" y="455" width="1340" height="230" fill="#f5eefc" stroke="#c9a8ea" rx="10"/><text x="45" y="477" class="g">4 · Data &amp; storage</text>
+<rect class="b" x="60" y="495" width="230" height="60"/><text class="t" x="175" y="518">Cache (Redis)</text><text class="h" x="175" y="535">listing pages, sessions, availability</text>
+<rect class="b" x="330" y="495" width="230" height="60"/><text class="t" x="445" y="518">Primary DB (Postgres)</text><text class="h" x="445" y="535">bookings, users, payments — strong consistency</text>
+<rect class="b" x="600" y="495" width="230" height="60"/><text class="t" x="715" y="518">Read replicas</text><text class="h" x="715" y="535">listing/review reads, multi-region</text>
+<rect class="b" x="870" y="495" width="230" height="60"/><text class="t" x="985" y="518">Search index</text><text class="h" x="985" y="535">OpenSearch, geo-sharded, fed by events</text>
+<rect class="b" x="1140" y="495" width="210" height="60"/><text class="t" x="1245" y="518">Object storage</text><text class="h" x="1245" y="535">S3-style originals + CDN origin</text>
+<text class="h" x="60" y="590" style="text-anchor:start">Scaling: shard bookings by listing_id / region · partition by date · cache-aside with short TTL + event-driven invalidation · CQRS for read-heavy listing views</text>
+<text class="h" x="60" y="612" style="text-anchor:start">Availability: multi-AZ primary with failover · cross-region read replicas · image originals replicated · backups + PITR</text>
+<text class="h" x="60" y="634" style="text-anchor:start">Search: near-real-time indexing from the event bus; ranking features (price, rating, distance) computed offline and served from the index</text>
+<text class="h" x="60" y="656" style="text-anchor:start">Frontend: static shell + ISR listing pages at the edge; gallery/photo tour/lightbox lazy-loaded; images sized per viewport with priority hints for the hero</text>
+<path class="l" d="M350 370V430H175V495"/><path class="l" d="M550 370V440H445V495"/><path class="l" d="M950 370V440H715V495" /><path class="l" d="M1150 370V470H985V495"/><path class="l" d="M350 370V450H1245V495"/>
+
+<rect x="30" y="710" width="650" height="160" fill="#fff" stroke="#bbb" rx="10"/><text x="45" y="732" class="g">5 · Observability</text>
+<rect class="b" x="60" y="750" width="180" height="50"/><text class="t" x="150" y="772">Logs</text><text class="h" x="150" y="789">structured, centralized</text>
+<rect class="b" x="260" y="750" width="180" height="50"/><text class="t" x="350" y="772">Metrics &amp; SLOs</text><text class="h" x="350" y="789">latency, error rate, LCP/INP</text>
+<rect class="b" x="460" y="750" width="190" height="50"/><text class="t" x="555" y="772">Tracing</text><text class="h" x="555" y="789">OpenTelemetry end-to-end</text>
+<text class="h" x="60" y="830" style="text-anchor:start">Real-user monitoring on the frontend; alerting on booking-success rate</text>
+
+<rect x="720" y="710" width="650" height="160" fill="#fff" stroke="#bbb" rx="10"/><text x="735" y="732" class="g">6 · CI/CD &amp; deployment</text>
+<rect class="b" x="750" y="750" width="170" height="50"/><text class="t" x="835" y="772">Git + PR checks</text><text class="h" x="835" y="789">lint, tests, visual diff, a11y</text>
+<rect class="b" x="950" y="750" width="170" height="50"/><text class="t" x="1035" y="772">Build &amp; artifacts</text><text class="h" x="1035" y="789">containers, static bundle</text>
+<rect class="b" x="1150" y="750" width="200" height="50"/><text class="t" x="1250" y="772">Progressive rollout</text><text class="h" x="1250" y="789">preview → canary → prod, rollback</text>
+<path class="l" d="M920 775H950"/><path class="l" d="M1120 775H1150"/>
+<text class="h" x="750" y="830" style="text-anchor:start">Infra as code; per-region stacks; feature flags for risky changes</text>
+</svg>

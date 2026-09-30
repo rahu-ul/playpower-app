@@ -1,0 +1,42 @@
+.listing-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 24px 0 16px;
+}
+
+.listing-header-title {
+  font-size: 22px;
+  font-weight: 600;
+  margin: 0;
+}
+
+.listing-header-actions {
+  display: flex;
+  gap: 8px;
+  flex-shrink: 0;
+}
+
+.listing-header-action-btn {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  background: none;
+  border: none;
+  padding: 8px;
+  border-radius: var(--radius-sm);
+  font-size: 14px;
+  font-weight: 600;
+  text-decoration: underline;
+}
+
+.listing-header-action-btn:hover {
+  background: var(--color-bg-subtle);
+}
+
+@media (max-width: 700px) {
+  .listing-header-action-label {
+    display: none;
+  }
+}
